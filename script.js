@@ -1,66 +1,82 @@
 function start() {
-  let randhit;
+  
+  document.querySelector(".table").style.display = "none";
+  document.querySelector(".table").style.opacity = "0";
   let score = 0;
-  let count = 80;
-  let time = 3000;
-  let createelem = "";
+  let body = document.querySelector(".contbody");
+  let score_display = document.querySelector("#score");
+  let time = 60;
+  let time_display = document.getElementById("time");
+  score_display.innerText =score;
+  time_display.innerText = time;
+  body.style.filter = "blur(0px)";
+let temp_to_point = localStorage.getItem("hp");
 
-  function create() {
-    document.querySelector(".contbody").innerHTML = "";
-    if (window.innerWidth < 750) {
-      for (var i = 1; i < 65; i++) {
-        var rand = Math.floor(Math.random() * 10);
-        createelem += `<h1 class="elem">${rand}</h1>`;
-      }
+if(temp_to_point == null){
+  localStorage.setItem("hp",0);
+}
+  let n;
+  function get_numbers() {
+    body.innerText = '';
+    for(let i = 0;i<49;i++){
+      n = document.createElement("h1");
+      n.textContent = Math.floor(Math.random()*10);
+      body.appendChild(n);
+      n=0
     }
-    if (window.innerWidth > 750) {
-      for (var i = 1; i < 82; i++) {
-        var rand = Math.floor(Math.random() * 10);
-        createelem += `<h1 class="elem">${rand}</h1>`;
+  }
+
+  get_numbers();
+
+  
+  
+  let a = setInterval(()=>{
+    if(time == 0){
+      document.querySelector(".table").style.display = "flex";
+      document.querySelector(".table").style.opacity = "1";
+      document.querySelector(".table div p").innerText = score;
+      let high_point = localStorage.getItem("hp");
+      if(high_point < score){
+        localStorage.setItem("hp",score);
       }
+      document.querySelector(".table h4 span").innerText = high_point;
+      clearInterval(a);
+
+      body.style.filter = "blur(5px)";
+      body.innerText = '';
+      
     }
-    document.querySelector(".contbody").innerHTML = createelem;
-  }
-  function timer() {
-    var createtime = setInterval(() => {
-      if (time > 0) {
-        time--;
-        document.getElementById("time").textContent = time;
-      } else {
-        clearInterval(createtime);
-        document.querySelector(".contbody").innerHTML = `game over<br>
-    <p class="scoreb">Your score : ${score - 1}</p><br>
-    `;
-      }
-    }, 1000);
-  }
-  function randomhit() {
-    var rand = Math.floor(Math.random() * 10);
-    randhit = rand;
-    document.querySelector("#hit").textContent = randhit;
-  }
-  function scorefn() {
-    document.querySelector("#score").textContent = score;
+    time_display.innerText = time;
+    time--;
+  },1000);
+
+  function get_score(){
     score++;
+    score_display.innerText = score;
   }
 
-  document.querySelector("#restore").addEventListener("click", () => {
-    create();
-  });
 
-  document.querySelector(".contbody").addEventListener("click", (dets) => {
-    if (Number(dets.target.textContent) === randhit) {
-      createelem = "";
-      scorefn();
-      randomhit();
-      create();
+  let hit;
+
+
+  function get_hit(){
+  hit = Math.floor(Math.random()*10);
+  let hit_display = document.getElementById("hit");
+  hit_display.innerText = hit;
+  }
+
+  let main_body = document.querySelector(".contbody");
+
+  main_body.addEventListener("click",(e)=>{
+    if(hit == e.target.innerText){
+      get_hit();
+      get_numbers();
+      get_score();
     }
-  });
+  })
 
-  scorefn();
-  randomhit();
-  timer();
-  create();
+
+  get_hit();
 }
 
 start();

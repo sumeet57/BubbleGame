@@ -5,8 +5,8 @@
   font-family: "Dhurjati", sans-serif;
 }
 :root {
-  --main: #303030;
-  --medium: dimgrey;
+  --main: #000;
+  --medium: #ffe0b4;
   --low: #dadada;
 }
 html,
@@ -22,10 +22,64 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+
+.table{
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  z-index: 2;
+  background-color: grey;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  display: none;
+  opacity: 0;
+  transition: all ease-in-out 1s;
+}
+.table h2{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+  padding: 10px;
+  font-weight: 500;
+}
+.table div p{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  padding: 10px;
+  font-weight: 700;
+}
+.table h4{
+  font-size: 20px;
+  font-family: cursive;
+  text-transform: capitalize;
+  font-weight: 300;
+}
+.table h4 span{
+  font-family: 'Times New Roman', Times, serif;
+}
+.table div button{
+  padding: 0px 10px;
+  background-color: #dadada;
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) .5s;
+}
+.table div button:hover{
+  background-color: #000;
+  color: #dadada;
+}
+
 .container {
-  width: 50rem;
-  height: 70%;
+  width: 350px;
+  height: 500px;
   background-color: var(--medium);
   border-radius: 1.5vw;
   overflow: hidden;
@@ -33,21 +87,20 @@ body {
 .container .conttop {
   width: 100%;
   height: fit-content;
-
   background-color: var(--low);
-  color: var(--medium);
+  color: var(--main);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 10px;
+  padding: 10px 10px;
   text-transform: uppercase;
-  font-size: 2vw;
+  font-size: 20px;
 }
 .container .conttop button {
   padding: 1px 10px;
   font-weight: 500;
   border-radius: 5px;
-  font-size: 19px;
+  font-size: 10px;
   text-align: center;
   transition: cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
 }
@@ -63,10 +116,10 @@ body {
   text-align: center;
   text-transform: uppercase;
   font-weight: 900;
-  font-size: 2.2vw;
+  font-size: 20px;
 }
 .container .contbody {
-  padding: 2vh 1vw;
+  padding: 10px 10px;
   position: relative;
   display: flex;
   text-transform: uppercase;
@@ -81,8 +134,8 @@ body {
   gap: 5px;
 }
 .container .contbody h1 {
-  width: 62.5px;
-  height: 62.5px;
+  width: 42px;
+  height: 42px;
   background-color: var(--main);
   border-radius: 50%;
   color: var(--low);
@@ -91,7 +144,7 @@ body {
   /* gap: 10px; */
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 20px;
   font-weight: 300;
   transition: all ease-in 0.1s;
 }
@@ -120,47 +173,4 @@ body {
   background-color: var(--main);
   color: var(--low);
   cursor: pointer;
-}
-@media (max-width: 1000px) {
-  .container .contbody h1 {
-    gap: 5px;
-    width: 65px;
-    height: 65px;
-    font-size: 1.5rem;
-  }
-  .container .conttop {
-    height: 55px;
-    font-size: 3.5vw;
-  }
-  .container .conttop .box {
-    /* height: 50px; */
-    font-size: 3vw;
-  }
-}
-@media (max-width: 550px) {
-  .container .contbody {
-    gap: 3px;
-    padding: 0.8rem 0.2rem;
-  }
-  .container .contbody h1 {
-    gap: 10px;
-    width: 50px;
-    height: 50px;
-    font-size: 1.1rem;
-  }
-  .container .conttop {
-    height: 35px;
-    font-size: 4.5vw;
-  }
-  .container .conttop .box {
-    /* height: 50px; */
-    font-size: 3.5vw;
-  }
-  .container .contbody {
-    height: calc(100% - 30px);
-  }
-  .container {
-    width: 85vw;
-    height: 32.8rem;
-  }
 }
